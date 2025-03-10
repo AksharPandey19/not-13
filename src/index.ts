@@ -14,8 +14,7 @@ import { createScaleableContainer } from "./components/scaleable-container/scale
 export let bodyElement: HTMLElement;
 export let gameContainer: HTMLElement;
 
-export let discordButton: EdgeLinkButton;
-export let coffeeButton: EdgeLinkButton;
+
 export let soundToggle: EdgeButton;
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -29,18 +28,6 @@ window.addEventListener("DOMContentLoaded", () => {
 	mount(bodyElement, gameContainer);
 
 	initMusic();
-
-	discordButton = new EdgeLinkButton(bodyElement, SVGs.discord, "#5865F2", 8, -8, "https://discord.gg/kPf8XwNuZT");
-	coffeeButton = new EdgeLinkButton(
-		bodyElement,
-		SVGs.coffee,
-		"#FBAA19",
-		64,
-		-8,
-		"https://ko-fi.com/martintale?ref=not-13",
-	);
-	discordButton.root.style.opacity = "0";
-	coffeeButton.root.style.opacity = "0";
 
 	soundToggle = new EdgeButton(bodyElement, SVGs.sound, "sound", 8, 8);
 	soundToggle.root.style.opacity = "0";

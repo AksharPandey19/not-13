@@ -1,4 +1,4 @@
-import { coffeeButton, discordButton, gameContainer, soundToggle } from "..";
+import { gameContainer, soundToggle } from "..";
 import { createButton } from "../components/button/button";
 import { getAverageRGB, rgbToHex, setGameColor } from "../helpers/colors";
 import { el, mount, setTextContent, svgEl } from "../helpers/dom";
@@ -207,7 +207,7 @@ function showTitleScreen() {
 	if (!web3Loaded) {
 		loadThirdWebButton.style.pointerEvents = "all";
 	}
-	[discordButton, coffeeButton, soundToggle].forEach((item) => {
+	[soundToggle].forEach((item) => {
 		item.root.style.opacity = "0";
 		item.root.style.pointerEvents = "all";
 	});
@@ -274,15 +274,6 @@ function showTitleScreen() {
 		}
 	}, 750);
 
-	setTimeout(() => {
-		[discordButton, coffeeButton].forEach((item) => {
-			fadeIn(item.root, {
-				onComplete: () => {
-					item.root.style.transform = "";
-				},
-			});
-		});
-
 		fadeIn(soundToggle.root, {
 			to: { opacity: state.sound.value === true ? 1 : 0.4 },
 			onComplete: () => {
@@ -293,15 +284,14 @@ function showTitleScreen() {
 		if (!hasTopSpeeds) {
 			fadeIn(roundLabel);
 		}
-	}, 1000);
-}
+	}
 
 function hideTitleScreen() {
 	const hasTopSpeeds = state.topSpeeds.value.length > 0;
 
 	startGameButton.style.pointerEvents = "none";
 	loadThirdWebButton.style.pointerEvents = "none";
-	[discordButton, coffeeButton, soundToggle].forEach((item) => {
+	[soundToggle].forEach((item) => {
 		item.root.style.pointerEvents = "none";
 	});
 
@@ -312,9 +302,6 @@ function hideTitleScreen() {
 	swingDown(themeSelector);
 	themeSelector.style.pointerEvents = "none";
 
-	[discordButton, coffeeButton].forEach((item) => {
-		fadeOut(item.root);
-	});
 
 	fadeOut(soundToggle.root, { from: { opacity: state.sound.value === true ? 1 : 0.4 } });
 
